@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  rmp-alma:
+    container_name: rmp-alma
+    image: rmp-alma
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        R_VERSION: 4.3.3
+        OS_VERSION: 9.4
+    privileged: true
+    platform: linux/amd64
+    command: /bin/bash -c "sleep infinity"
+    working_dir: /home/rmpuser/git
+    volumes:
+      - "${LOCAL_ENV}:/home/rmpuser/"
+    deploy:
+      resources:
+        limits:
+          cpus: '8'
+          memory: 12G
+        reservations:
+          cpus: '8'
+          memory: 12G
