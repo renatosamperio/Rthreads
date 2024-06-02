@@ -12,14 +12,6 @@ services:
     privileged: true
     platform: linux/amd64
     command: /bin/bash -c "sleep infinity"
-    working_dir: /home/rmpuser/git
+    working_dir: /home/rmpuser/rparalelism
     volumes:
       - "${LOCAL_ENV}:/home/rmpuser/"
-    deploy:
-      resources:
-        limits:
-          cpus: '8'
-          memory: 12G
-        reservations:
-          cpus: '8'
-          memory: 12G

@@ -64,7 +64,7 @@ test_parallel_sum <- function(
     sum_bench <- summary(res_benchmark)
 
     # preparing short report
-    ndig <- 4
+    ndig <- 3
     report <- data.frame(matrix(ncol = 3, nrow = 0))
     colnames(report) <- c("style", "stdev", "duration")
     report[nrow(report) + 1, ] <- c(
