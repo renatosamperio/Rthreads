@@ -6,7 +6,7 @@ rcpp_parallel_sum <- function(vec = NULL,
 
     if (is.null(vec)) {
         if(debug) message(paste0("Creating vector of ", size, " ..."))
-        vec <- runif(size)
+        vec <- stats::runif(size)
     }
 
     if (is.null(ncpus)) {

@@ -21,13 +21,19 @@ if (FALSE) {
     list(
         data = sort(input),
         avg = mean(input),
-        stdev = sd(input),
+        stdev = stats::sd(input),
         max = max(input),
         min = min(input),
         range = max(input) - min(input)
     )
 }
 
+#' Run parallel benchmark 
+#' @param vec `vector` input array
+#' @param times `numeric` how many times it shoud run
+#' @param ncpus `numeric` number of cores to use
+#' @param v_size `numeric` size of vector if not provided
+#' @export
 test_parallel_sum <- function(
     vec = NA,
     times = 50, 
@@ -35,7 +41,7 @@ test_parallel_sum <- function(
     v_size = 1e05) {
 
     if (any(is.na(vec))) {
-        vec <- runif(v_size, min = 1000.0, max = 1.0e6)
+        vec <- stats::runif(v_size, min = 1000.0, max = 1.0e6)
     }
     
     out_rcpp <- c()

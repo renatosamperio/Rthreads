@@ -1,4 +1,4 @@
-#       vec <- runif(1e+8)
+#       vec <- stats::runif(1e+8)
 #       one_parallel_det_sum(vec, ncpus = 4)
 one_parallel_det_sum <- function(vec = NULL,
                                  ncpus = NULL,
@@ -7,7 +7,7 @@ one_parallel_det_sum <- function(vec = NULL,
 
     if (is.null(vec)) {
         if(debug) message(paste0("Creating vector of ", size, " ..."))
-        vec <- runif(size)
+        vec <- stats::runif(size)
     }
 
     if (is.null(ncpus)) {

@@ -6,8 +6,10 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: GPL (>=3)
 Imports: 
+    microbenchmark,
     Rcpp,
-    RcppParallel
+    RcppParallel,
+    stats
 LinkingTo: 
     Rcpp,
     RcppParallel

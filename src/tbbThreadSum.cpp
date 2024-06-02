@@ -92,7 +92,7 @@ int parallelTbbVectorSum(std::vector<double> vec) {
     // Get hardware capabilities
     int base_num_cores = std::thread::hardware_concurrency();
     if (base_num_cores == 0) {
-        std::cerr << "Unable to determine the number of CPU cores.\n";
+        std::cout << "Unable to determine the number of CPU cores.\n";
         return 1;
     }
 
