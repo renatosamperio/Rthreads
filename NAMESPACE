@@ -3,4 +3,4 @@
 export(test_parallel_sum)
 importFrom(Rcpp,sourceCpp)
 importFrom(RcppParallel,RcppParallelLibs)
-useDynLib(rparalelism, .registration = TRUE)
+useDynLib(rparallelism, .registration = TRUE)

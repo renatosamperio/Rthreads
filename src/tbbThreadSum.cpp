@@ -11,7 +11,7 @@ double abs_diff(double a, double b)
     } else if (a==b) {
         diff = 0;
     } else {
-        std::cout << "Error: Sum is weird!"<<std::endl;
+        Rcpp::Rcout << "Error: Sum is weird!"<<std::endl;
     }
 
 	return diff;
@@ -57,9 +57,9 @@ double sum_parallel(std::vector<double> &vec, int num_cores) {
         std::plus<double>()
     );
 
-    std::cout << std::fixed;
-    std::cout << std::setprecision(25);
-    std::cout << sum << std::endl;
+    Rcpp::Rcout << std::fixed;
+    Rcpp::Rcout << std::setprecision(25);
+    Rcpp::Rcout << sum << std::endl;
     return sum ;
 }
 
@@ -70,12 +70,12 @@ double run_sum_parallel(std::vector<double> &vec, int base_num_cores, int num_co
     double aDiffs = abs_diff(base_sum, sum);
     if (debug) {
         int chunk_size = (vec.size() + num_cores - 1) / num_cores;
-        std::cout << "Running with "<<num_cores << " cores"<<std::endl;
-        std::cout << "  Chunk size of "<< chunk_size << std::endl;
-        std::cout << "    Sum with "<<base_num_cores <<" threads: " << base_sum << std::endl;
-        std::cout << "    Sum with "<<num_cores <<" threads: " << sum << std::endl;
+        Rcpp::Rcout << "Running with "<<num_cores << " cores"<<std::endl;
+        Rcpp::Rcout << "  Chunk size of "<< chunk_size << std::endl;
+        Rcpp::Rcout << "    Sum with "<<base_num_cores <<" threads: " << base_sum << std::endl;
+        Rcpp::Rcout << "    Sum with "<<num_cores <<" threads: " << sum << std::endl;
         std::string is_zero = (aDiffs == 0) ? "equal" : "different";
-        std::cout << "    Diff "<< base_num_cores <<" vs "<< num_cores<<": " 
+        Rcpp::Rcout << "    Diff "<< base_num_cores <<" vs "<< num_cores<<": " 
               << aDiffs << ", runs are "<<is_zero<< std::endl;
     }
     return sum;
@@ -92,7 +92,7 @@ int parallelTbbVectorSum(std::vector<double> vec) {
     // Get hardware capabilities
     int base_num_cores = std::thread::hardware_concurrency();
     if (base_num_cores == 0) {
-        std::cout << "Unable to determine the number of CPU cores.\n";
+        Rcpp::Rcout << "Unable to determine the number of CPU cores.\n";
         return 1;
     }
 

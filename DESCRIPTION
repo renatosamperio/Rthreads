@@ -1,4 +1,4 @@
-Package: rparalelism
+Package: rparallelism
 Title: Sample usage of TBB vs RcppParallel
 Version: 0.0.1
 Authors@R: 

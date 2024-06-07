@@ -2,26 +2,26 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 trunc_num <- function(x, precision = 1.0e10, debug = FALSE) {
-    .Call(`_rparalelism_trunc_num`, x, precision, debug)
+    .Call(`_rparallelism_trunc_num`, x, precision, debug)
 }
 
 oneParallelSum <- function(v) {
-    .Call(`_rparalelism_oneParallelSum`, v)
+    .Call(`_rparallelism_oneParallelSum`, v)
 }
 
 oneParallelSumChunked <- function(v, num_cores) {
-    .Call(`_rparalelism_oneParallelSumChunked`, v, num_cores)
+    .Call(`_rparallelism_oneParallelSumChunked`, v, num_cores)
 }
 
 oneParallelSumDeterministic <- function(v, num_cores) {
-    .Call(`_rparalelism_oneParallelSumDeterministic`, v, num_cores)
+    .Call(`_rparallelism_oneParallelSumDeterministic`, v, num_cores)
 }
 
 rcppParallelSum <- function(v) {
-    .Call(`_rparalelism_rcppParallelSum`, v)
+    .Call(`_rparallelism_rcppParallelSum`, v)
 }
 
 sum_parallel <- function(vec, num_cores) {
-    .Call(`_rparalelism_sum_parallel`, vec, num_cores)
+    .Call(`_rparallelism_sum_parallel`, vec, num_cores)
 }
 

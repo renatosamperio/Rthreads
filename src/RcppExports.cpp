@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // trunc_num
 double trunc_num(double x, double precision, bool debug);
-RcppExport SEXP _rparalelism_trunc_num(SEXP xSEXP, SEXP precisionSEXP, SEXP debugSEXP) {
+RcppExport SEXP _rparallelism_trunc_num(SEXP xSEXP, SEXP precisionSEXP, SEXP debugSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -25,7 +25,7 @@ END_RCPP
 }
 // oneParallelSum
 double oneParallelSum(Rcpp::NumericVector& v);
-RcppExport SEXP _rparalelism_oneParallelSum(SEXP vSEXP) {
+RcppExport SEXP _rparallelism_oneParallelSum(SEXP vSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,7 +36,7 @@ END_RCPP
 }
 // oneParallelSumChunked
 double oneParallelSumChunked(std::vector<double>& v, int num_cores);
-RcppExport SEXP _rparalelism_oneParallelSumChunked(SEXP vSEXP, SEXP num_coresSEXP) {
+RcppExport SEXP _rparallelism_oneParallelSumChunked(SEXP vSEXP, SEXP num_coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -48,7 +48,7 @@ END_RCPP
 }
 // oneParallelSumDeterministic
 double oneParallelSumDeterministic(std::vector<double>& v, int num_cores);
-RcppExport SEXP _rparalelism_oneParallelSumDeterministic(SEXP vSEXP, SEXP num_coresSEXP) {
+RcppExport SEXP _rparallelism_oneParallelSumDeterministic(SEXP vSEXP, SEXP num_coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -60,7 +60,7 @@ END_RCPP
 }
 // rcppParallelSum
 double rcppParallelSum(Rcpp::NumericVector& v);
-RcppExport SEXP _rparalelism_rcppParallelSum(SEXP vSEXP) {
+RcppExport SEXP _rparallelism_rcppParallelSum(SEXP vSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -71,7 +71,7 @@ END_RCPP
 }
 // sum_parallel
 double sum_parallel(std::vector<double>& vec, int num_cores);
-RcppExport SEXP _rparalelism_sum_parallel(SEXP vecSEXP, SEXP num_coresSEXP) {
+RcppExport SEXP _rparallelism_sum_parallel(SEXP vecSEXP, SEXP num_coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -83,16 +83,16 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rparalelism_trunc_num", (DL_FUNC) &_rparalelism_trunc_num, 3},
-    {"_rparalelism_oneParallelSum", (DL_FUNC) &_rparalelism_oneParallelSum, 1},
-    {"_rparalelism_oneParallelSumChunked", (DL_FUNC) &_rparalelism_oneParallelSumChunked, 2},
-    {"_rparalelism_oneParallelSumDeterministic", (DL_FUNC) &_rparalelism_oneParallelSumDeterministic, 2},
-    {"_rparalelism_rcppParallelSum", (DL_FUNC) &_rparalelism_rcppParallelSum, 1},
-    {"_rparalelism_sum_parallel", (DL_FUNC) &_rparalelism_sum_parallel, 2},
+    {"_rparallelism_trunc_num", (DL_FUNC) &_rparallelism_trunc_num, 3},
+    {"_rparallelism_oneParallelSum", (DL_FUNC) &_rparallelism_oneParallelSum, 1},
+    {"_rparallelism_oneParallelSumChunked", (DL_FUNC) &_rparallelism_oneParallelSumChunked, 2},
+    {"_rparallelism_oneParallelSumDeterministic", (DL_FUNC) &_rparallelism_oneParallelSumDeterministic, 2},
+    {"_rparallelism_rcppParallelSum", (DL_FUNC) &_rparallelism_rcppParallelSum, 1},
+    {"_rparallelism_sum_parallel", (DL_FUNC) &_rparallelism_sum_parallel, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_rparalelism(DllInfo *dll) {
+RcppExport void R_init_rparallelism(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

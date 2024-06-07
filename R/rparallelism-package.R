@@ -4,6 +4,6 @@
 ## usethis namespace: start
 #' @importFrom Rcpp sourceCpp
 #' @importFrom RcppParallel RcppParallelLibs
-#' @useDynLib rparalelism, .registration = TRUE
+#' @useDynLib rparallelism, .registration = TRUE
 ## usethis namespace: end
 NULL

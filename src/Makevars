@@ -4,12 +4,9 @@ TBB_INC=$(TBB)/include
 TBB_LIB=$(TBB)/lib
 TBBLIBS=-ltbb -pthread
 
-
 # Appending info to default flags
 # LIBS_ARROW=-larrow_ipc -larrow_io -larrow_dataset -larrow_flight -larrow_gandiva -larrow_python -larrow_cuda -lparquet -lr
 LIBS_ARROW=-lboost_system -lstdc++ -pthread -shared -fPIC
-ARROW_LIB=/usr/lib64
-ARROW_INC=/usr/include/arrow
 
 # Define paths for R and libraries
 R_INC = /usr/local/lib64/R
@@ -23,7 +20,7 @@ INCLUDE_FLAGS = -I$(R_INC)/include -I$(RCPP_PARA)/include -I$(RCPP_INC)/include 
 CXX_23 = g++ -std=gnu++23
 
 #  Part '-Wl,-R' tells binary to look for the library 
-PKG_SYSTEM_LIBS = $(TBBLIBS) -L$(TBB_LIB) -I$(TBB_INC) -Wl,-R$(TBB_LIB) -L$(ARROW_LIB) -I$(ARROW_INC) -Wl,-R$(ARROW_LIB) -I$(R_INC)/lib 
+PKG_SYSTEM_LIBS = $(TBBLIBS) -L$(TBB_LIB) -I$(TBB_INC) -Wl,-R$(TBB_LIB) -I$(R_INC)/lib 
 PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS) 
 PKG_LIBS = -L$(TBB_LIB) $(SHLIB_OPENMP_CXXFLAGS) $(FLIBS) $(LIBS_ARROW) $(PKG_SYSTEM_LIBS)
 #  $(LAPACK_LIBS) $(BLAS_LIBS) 

@@ -10,9 +10,9 @@ double trunc_num(double x, double precision, bool debug) {
     // truncated = trunc(x*precision)/precision;
 
     if (debug) {
-        std::cout << std::fixed;
-        std::cout << std::setprecision(25);
-        std::cout << "truncated: " << truncated << std::endl;
+        Rcpp::Rcout << std::fixed;
+        Rcpp::Rcout << std::setprecision(25);
+        Rcpp::Rcout << "truncated: " << truncated << std::endl;
     }
 
     return truncated;
@@ -25,7 +25,7 @@ struct oneSum {
 
     void operator()( const blocked_range<double*>& input ) {
         double temp = value;
-        // std::cout << "(" << std::this_thread::get_id() << " - " << r.begin() << " : " 
+        // Rcpp::Rcout << "(" << std::this_thread::get_id() << " - " << r.begin() << " : " 
         //           << r.end() << "): " << std::endl;
         
         // value += std::accumulate(

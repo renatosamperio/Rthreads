@@ -6,7 +6,7 @@ double oneParallelSumChunked(std::vector<double> &vec, int num_cores) {
     double sum = 0.0;
     int num_elements = vec.size();
     int chunk_size = (num_elements + num_cores - 1) / num_cores;
-    // std::cout << "  Chunk size of "<<chunk_size << std::endl;
+    // Rcpp::Rcout << "  Chunk size of "<<chunk_size << std::endl;
 
     sum = oneapi::tbb::parallel_reduce(
         oneapi::tbb::blocked_range<size_t>(0, num_elements, chunk_size),

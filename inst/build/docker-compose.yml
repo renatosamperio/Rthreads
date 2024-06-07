@@ -12,6 +12,6 @@ services:
     privileged: true
     platform: linux/amd64
     command: /bin/bash -c "sleep infinity"
-    working_dir: /home/rmpuser/rparalelism
+    working_dir: /home/rmpuser/rparallelism
     volumes:
       - "${LOCAL_ENV}:/home/rmpuser/"

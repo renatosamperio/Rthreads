@@ -49,7 +49,6 @@ test_parallel_sum <- function(
     out_one_chu <- c()
     out_one_det <- c()
 
-
     res_benchmark <- microbenchmark::microbenchmark(
         out_rcpp    <- .rotate_ncpus(out_rcpp,    vec, rcpp_parallel_sum,      ncpus = ncpus),
         out_one     <- .rotate_ncpus(out_one,     vec, one_parallel_sum,       ncpus = ncpus),
@@ -71,7 +70,7 @@ test_parallel_sum <- function(
 
     # preparing short report
     ndig <- 3
-    report <- data.frame(matrix(ncol = 3, nrow = 0))
+    report <- data.frame(matrix(ncol = ndig, nrow = 0))
     colnames(report) <- c("style", "stdev", "duration")
     report[nrow(report) + 1, ] <- c(
         "rcpp", format(res$rcpp$stdev, digits = ndig), sum_bench$mean[[1]])
