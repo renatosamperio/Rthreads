@@ -10,27 +10,14 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// trunc_num
-double trunc_num(double x, double precision, bool debug);
-RcppExport SEXP _rparallelism_trunc_num(SEXP xSEXP, SEXP precisionSEXP, SEXP debugSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type precision(precisionSEXP);
-    Rcpp::traits::input_parameter< bool >::type debug(debugSEXP);
-    rcpp_result_gen = Rcpp::wrap(trunc_num(x, precision, debug));
-    return rcpp_result_gen;
-END_RCPP
-}
-// oneParallelSum
-double oneParallelSum(Rcpp::NumericVector& v);
-RcppExport SEXP _rparallelism_oneParallelSum(SEXP vSEXP) {
+// oneParallelSumWorker
+double oneParallelSumWorker(Rcpp::NumericVector& v);
+RcppExport SEXP _rparallelism_oneParallelSumWorker(SEXP vSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type v(vSEXP);
-    rcpp_result_gen = Rcpp::wrap(oneParallelSum(v));
+    rcpp_result_gen = Rcpp::wrap(oneParallelSumWorker(v));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -55,6 +42,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::vector<double>& >::type v(vSEXP);
     Rcpp::traits::input_parameter< int >::type num_cores(num_coresSEXP);
     rcpp_result_gen = Rcpp::wrap(oneParallelSumDeterministic(v, num_cores));
+    return rcpp_result_gen;
+END_RCPP
+}
+// oneParallelSum
+double oneParallelSum(Rcpp::NumericVector& v);
+RcppExport SEXP _rparallelism_oneParallelSum(SEXP vSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type v(vSEXP);
+    rcpp_result_gen = Rcpp::wrap(oneParallelSum(v));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -83,10 +81,10 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rparallelism_trunc_num", (DL_FUNC) &_rparallelism_trunc_num, 3},
-    {"_rparallelism_oneParallelSum", (DL_FUNC) &_rparallelism_oneParallelSum, 1},
+    {"_rparallelism_oneParallelSumWorker", (DL_FUNC) &_rparallelism_oneParallelSumWorker, 1},
     {"_rparallelism_oneParallelSumChunked", (DL_FUNC) &_rparallelism_oneParallelSumChunked, 2},
     {"_rparallelism_oneParallelSumDeterministic", (DL_FUNC) &_rparallelism_oneParallelSumDeterministic, 2},
+    {"_rparallelism_oneParallelSum", (DL_FUNC) &_rparallelism_oneParallelSum, 1},
     {"_rparallelism_rcppParallelSum", (DL_FUNC) &_rparallelism_rcppParallelSum, 1},
     {"_rparallelism_sum_parallel", (DL_FUNC) &_rparallelism_sum_parallel, 2},
     {NULL, NULL, 0}

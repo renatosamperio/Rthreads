@@ -8,10 +8,8 @@ if (FALSE) {
 }
 
 .rotate_ncpus <- \(out_vector, input_vec, func, ncpus = NA) {
-    vec_size <- length(out_vector)
-
     if (is.na(ncpus)) {
-        ncpus <- ((vec_size %% 4) + 1) * 2
+        ncpus <- ((length(out_vector) %% 4) + 1) * 2
     }
     
     c(out_vector, func(input_vec, ncpus))

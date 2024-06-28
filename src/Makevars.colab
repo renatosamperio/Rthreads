@@ -1,13 +1,15 @@
+## Compilation steps for Google Colab environment
+
 # Define libraries for handling TBB
-TBB=/usr/include/oneapi/
-TBB_INC=$(TBB)/ 
-TBB_LIB=/usr/lib/x86_64-linux-gnu/
+TBB=/usr/include/oneapi
+TBB_INC=$(TBB)
+TBB_LIB=/usr/lib/x86_64-linux-gnu
 TBBLIBS=-ltbb -pthread
 
 # Define paths for R and libraries
-R_PKGS = /usr/local/lib/R/site-library/
+R_PKGS = /usr/lib/R/site-library
 R_INC = /usr/share/R/include
-R_LIB = /usr/lib/R/lib/
+R_LIB = /usr/lib/R/lib
 RCPP_INC = $(R_PKGS)/Rcpp
 RCPP_PARA = $(R_PKGS)/RcppParallel
 
@@ -15,7 +17,7 @@ RCPP_PARA = $(R_PKGS)/RcppParallel
 CPP_FLAGS = -fopenmp -fpic -g -O2 -flto -Wall -pedantic -fdiagnostics-color=always
 LIB_FLAGS = -L$(RCPP_PARA)/lib -L$(RCPP_PARA)/libs -L$(TBB_LIB)
 INCLUDE_FLAGS = -I$(R_INC) -I$(RCPP_PARA)/include -I$(RCPP_INC)/include -I$(TBB_INC) 
-CXX_23 = g++ -std=gnu++17
+CXX_STD = CXX17
 
 #  Part '-Wl,-R' tells binary to look for the library 
 PKG_SYSTEM_LIBS = $(TBBLIBS) -L$(TBB_LIB) -I$(TBB_INC) -Wl,-R$(TBB_LIB) -I$(R_LIB) 
@@ -36,4 +38,4 @@ all: build_lib
 ## Compile personalised targets
 OBJECTS = $(cpp_sharedlibs)
 %.o: %.cpp $(cpp_sources)
-	$(CXX_23) $< -c $(INCLUDE_FLAGS) $(LIB_FLAGS) $(CPP_FLAGS) 
+	$(CXX) $< -c $(INCLUDE_FLAGS) $(LIB_FLAGS) $(CPP_FLAGS) 

@@ -1,5 +1,27 @@
 #include "oneParallelSumDet.h"
 
+struct oneSum {
+    double value;
+    oneSum() : value(0) {}
+    oneSum( oneSum& s, split ) {value = 0;}
+
+    void operator()( const blocked_range<double*>& input ) {
+        double temp = value;
+        // Rcpp::Rcout << "(" << std::this_thread::get_id() << " - " << r.begin() << " : " 
+        //           << r.end() << "): " << std::endl;
+        
+        // value += std::accumulate(
+        //     input.begin(), input.begin(), 0.0);
+
+        for( double* a = input.begin(); a != input.end(); ++a ) {
+            temp += *a;
+        }
+        
+        value = temp;
+    }
+    void join( oneSum& rhs ) {value += rhs.value;}
+};
+
 double oneParallelSumDeterministic(std::vector<double> &numbers, int num_cores) {
 
     // Using parallel_deterministic_reduce

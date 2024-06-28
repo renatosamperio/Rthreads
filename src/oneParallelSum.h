@@ -9,7 +9,4 @@
 using namespace oneapi::tbb;
 
 // [[Rcpp::export]]
-double trunc_num(double x, double precision = 1.0e10, bool debug = false);
-
-// [[Rcpp::export]]
-double oneParallelSum(Rcpp::NumericVector &v);
+double oneParallelSumWorker(Rcpp::NumericVector &v);

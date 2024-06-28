@@ -2,22 +2,6 @@
 
 #define gettid() ((pid_t)syscall(SYS_gettid))
 
-double trunc_num(double x, double precision, bool debug) {
-    double truncated = 0.0;
-    int64_t tmp = x * precision;
-    truncated = tmp / precision; 
-
-    // truncated = trunc(x*precision)/precision;
-
-    if (debug) {
-        Rcpp::Rcout << std::fixed;
-        Rcpp::Rcout << std::setprecision(25);
-        Rcpp::Rcout << "truncated: " << truncated << std::endl;
-    }
-
-    return truncated;
-}
-
 struct oneSum {
     double value;
     oneSum() : value(0) {}

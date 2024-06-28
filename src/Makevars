@@ -1,28 +1,25 @@
+## Compilation steps for RStudio session with One API
+
 # Define libraries for handling TBB
 TBB=/opt/intel/oneapi/tbb/latest
 TBB_INC=$(TBB)/include 
 TBB_LIB=$(TBB)/lib
 TBBLIBS=-ltbb -pthread
 
-# Appending info to default flags
-# LIBS_ARROW=-larrow_ipc -larrow_io -larrow_dataset -larrow_flight -larrow_gandiva -larrow_python -larrow_cuda -lparquet -lr
-LIBS_ARROW=-lboost_system -lstdc++ -pthread -shared -fPIC
-
 # Define paths for R and libraries
 R_INC = /usr/local/lib64/R
 RCPP_INC = $(R_INC)/library/Rcpp
 RCPP_PARA = $(R_INC)/library/RcppParallel
-
 ## Additional compilation flags
 CPP_FLAGS = -fopenmp -fpic -g -O2 -flto -Wall -pedantic -fdiagnostics-color=always
 LIB_FLAGS = -L$(RCPP_PARA)/lib -L$(RCPP_PARA)/libs -L$(TBB_LIB)
 INCLUDE_FLAGS = -I$(R_INC)/include -I$(RCPP_PARA)/include -I$(RCPP_INC)/include -I$(TBB_INC) 
-CXX_23 = g++ -std=gnu++23
+CXX_STD = CXX17
 
 #  Part '-Wl,-R' tells binary to look for the library 
 PKG_SYSTEM_LIBS = $(TBBLIBS) -L$(TBB_LIB) -I$(TBB_INC) -Wl,-R$(TBB_LIB) -I$(R_INC)/lib 
 PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS) 
-PKG_LIBS = -L$(TBB_LIB) $(SHLIB_OPENMP_CXXFLAGS) $(FLIBS) $(LIBS_ARROW) $(PKG_SYSTEM_LIBS)
+PKG_LIBS = -L$(TBB_LIB) $(SHLIB_OPENMP_CXXFLAGS) $(FLIBS) $(PKG_SYSTEM_LIBS)
 #  $(LAPACK_LIBS) $(BLAS_LIBS) 
 
 ## Library source and object files
@@ -38,4 +35,4 @@ all: build_lib
 ## Compile personalised targets
 OBJECTS = $(cpp_sharedlibs)
 %.o: %.cpp $(cpp_sources)
-	$(CXX_23) $< -c $(INCLUDE_FLAGS) $(LIB_FLAGS) $(CPP_FLAGS) 
+	$(CXX) $< -c $(INCLUDE_FLAGS) $(LIB_FLAGS) $(CPP_FLAGS) 
