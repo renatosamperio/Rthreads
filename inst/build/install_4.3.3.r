@@ -40,5 +40,4 @@ install.packages(
     "zip"),
   dependencies = TRUE)
 
-
 install.packages(c("devtools"), dependencies = TRUE)
