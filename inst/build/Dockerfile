@@ -59,6 +59,7 @@ RUN dnf -y update \
         subversion \
         texlive \
         texlive-framed \
+        texlive-latex-fonts \
         unixODBC \
         urw-fonts \
         wget \
@@ -111,7 +112,12 @@ RUN dnf -y groupinstall "Development Tools" \
       libtiff-devel \
       parquet-devel \
       parquet-glib-devel \
-      xclip 
+      texinfo \
+      texinfo-tex \
+      # texlive-fonts-extra \
+      texlive-latex-base-dev \
+      texlive-latex-firstaid-dev \
+      xclip
 
 # install oneTBB library
 RUN echo $'[oneAPI]\n\
@@ -125,16 +131,16 @@ repo_gpgcheck=1\n\n' > /etc/yum.repos.d/oneAPI.repo \
     && dnf -y upgrade --allowerasing --best \
     && dnf -y install \
         intel-oneapi-mkl \
-        # intel-oneapi-vtune \
+        intel-oneapi-vtune \
         intel-oneapi-tbb-devel \
-        # intel-basekit \
+        intel-basekit \
     && dnf -y autoremove \
     && dnf clean all
 
 
 # Set up local container variables useful for R
 ENV PKG_CONFIG_PATH=/opt/intel/mkl/bin/pkgconfig:/usr/local/lib/pkgconfig:${PKG_CONFIG_PATH} \
-    MKLROOT=/opt/intel/mkl \
+    MKLROOT=/opt/intel/oneapi/mkl/latest \
     MKL_INTERFACE_LAYER=GNU,LP64 \
     MKL_THREADING_LAYER=GNU \
     MKL_DYNAMIC=FALSE \
@@ -162,12 +168,12 @@ RUN cd /tmp \
   && cd R-${R_VERSION} \
   # Configure link-time-optimization (LTO; see also --enable-lto option below)
   && printf "AR=gcc-ar\nRANLIB=gcc-ranlib\nNM=gcc-nm\n" >> config.site \
-  && export MKL="-L${MKLROOT}/lib/intel64 -lmkl_rt -Wl,--no-as-needed -lpthread -lm -ldl -flto=auto" \
+  && export MKL="-L${MKLROOT}/lib -lmkl_rt -Wl,--no-as-needed -lpthread -lm -ldl -flto=auto" \
   && ./configure \
       --enable-R-shlib \
       --enable-memory-profiling \
       --enable-lto \
-      --with-blas \
+      --with-blas="$MKL" \
       --with-lapack \
       --with-cairo \
       --with-x=no \

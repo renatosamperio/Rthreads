@@ -16,5 +16,5 @@ LinkingTo:
 Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 SystemRequirements: GNU make

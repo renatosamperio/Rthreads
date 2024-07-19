@@ -49,7 +49,7 @@ test_parallel_sum <- function(
 
     res_benchmark <- microbenchmark::microbenchmark(
         out_rcpp    <- .rotate_ncpus(out_rcpp,    vec, rcpp_parallel_sum,      ncpus = ncpus),
-        out_one     <- .rotate_ncpus(out_one,     vec, one_parallel_sum,       ncpus = ncpus),
+        out_one     <- .rotate_ncpus(out_one,     vec, one_parallel_sum_worker,ncpus = ncpus),
         out_one_chu <- .rotate_ncpus(out_one_chu, vec, one_parallel_sum_chunk, ncpus = ncpus),
         out_one_det <- .rotate_ncpus(out_one_det, vec, one_parallel_det_sum,   ncpus = ncpus),
         times = times

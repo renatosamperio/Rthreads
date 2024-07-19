@@ -1,5 +1,5 @@
 
-one_parallel_sum <- function(vec = NULL,
+one_parallel_sum_worker <- function(vec = NULL,
                              ncpus = NULL,
                              size = 1e+5,
                              debug = FALSE) {
@@ -15,5 +15,5 @@ one_parallel_sum <- function(vec = NULL,
 
     if(debug) message(paste0("Running parallel sum with oneTBB..."))
     RcppParallel::setThreadOptions(numThreads = ncpus)
-    oneParallelSum(vec)
+    oneParallelSumWorker(vec)
 }

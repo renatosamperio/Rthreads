@@ -1,16 +1,17 @@
-version: '3.9'
 services:
-  rmp-alma:
-    container_name: rmp-alma
-    image: rmp-alma
+  r-one-api:
+    container_name: r-one-api
+    image: renatosamperio/r-one-api
     build:
       context: ./
       dockerfile: ./Dockerfile
       args:
-        R_VERSION: 4.3.3
+        R_VERSION: 4.4.1
         OS_VERSION: 9.4
     privileged: true
     platform: linux/amd64
+    runtime: nvidia
+    user: 1000:1000
     command: /bin/bash -c "sleep infinity"
     working_dir: /home/rmpuser/rparallelism
     volumes:

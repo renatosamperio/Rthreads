@@ -1,4 +1,4 @@
-#include "oneParallelSum.h"
+#include "oneParallelSumWorker.h"
 
 #define gettid() ((pid_t)syscall(SYS_gettid))
 
@@ -24,7 +24,7 @@ struct oneSum {
     void join( oneSum& rhs ) {value += rhs.value;}
 };
 
-double oneParallelSum(Rcpp::NumericVector &input) {
+double oneParallelSumWorker(Rcpp::NumericVector &input) {
     int num_elements = input.size();
     std::vector<double> vec( input.begin(), input.end() ) ; 
     double* array = vec.data();
