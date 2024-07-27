@@ -137,7 +137,6 @@ repo_gpgcheck=1\n\n' > /etc/yum.repos.d/oneAPI.repo \
     && dnf -y autoremove \
     && dnf clean all
 
-
 # Set up local container variables useful for R
 ENV PKG_CONFIG_PATH=/opt/intel/mkl/bin/pkgconfig:/usr/local/lib/pkgconfig:${PKG_CONFIG_PATH} \
     MKLROOT=/opt/intel/oneapi/mkl/latest \
@@ -164,8 +163,8 @@ RUN cd /tmp \
   # && R_MAJOR_VERSION=${BASH_REMATCH[1]} \
   ## Download R source code
   && curl -O https://cran.rstudio.com/src/base/R-4/R-${R_VERSION}.tar.gz \
-  && tar -xf R-${R_VERSION}.tar.gz \
-  && cd R-${R_VERSION} \
+  && tar -xf R-${R_VERSION}.tar.gz
+RUN cd /tmp/R-${R_VERSION} \
   # Configure link-time-optimization (LTO; see also --enable-lto option below)
   && printf "AR=gcc-ar\nRANLIB=gcc-ranlib\nNM=gcc-nm\n" >> config.site \
   && export MKL="-L${MKLROOT}/lib -lmkl_rt -Wl,--no-as-needed -lpthread -lm -ldl -flto=auto" \
@@ -177,7 +176,9 @@ RUN cd /tmp \
       --with-lapack \
       --with-cairo \
       --with-x=no \
-      --with-tcltk=no \
+      --with-tcltk=no
+
+RUN cd /tmp/R-${R_VERSION} \
   ## Build and install
   && make \
   && make install \

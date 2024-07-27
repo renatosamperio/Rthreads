@@ -14,7 +14,7 @@ RCPP_PARA = $(R_INC)/library/RcppParallel
 CPP_FLAGS = -fopenmp -fpic -g -O2 -flto -Wall -pedantic -fdiagnostics-color=always
 LIB_FLAGS = -L$(RCPP_PARA)/lib -L$(RCPP_PARA)/libs -L$(TBB_LIB)
 INCLUDE_FLAGS = -I$(R_INC)/include -I$(RCPP_PARA)/include -I$(RCPP_INC)/include -I$(TBB_INC) 
-CXX_STD = CXX17
+CXX_STD = CXX20
 
 #  Part '-Wl,-R' tells binary to look for the library 
 PKG_SYSTEM_LIBS = $(TBBLIBS) -L$(TBB_LIB) -I$(TBB_INC) -Wl,-R$(TBB_LIB) -I$(R_INC)/lib 
