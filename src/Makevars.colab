@@ -7,7 +7,7 @@ TBB_LIB=/usr/lib/x86_64-linux-gnu
 TBBLIBS=-ltbb -pthread
 
 # Define paths for R and libraries
-R_PKGS = /usr/lib/R/site-library
+R_PKGS = /usr/local/lib/R/site-library
 R_INC = /usr/share/R/include
 R_LIB = /usr/lib/R/lib
 RCPP_INC = $(R_PKGS)/Rcpp

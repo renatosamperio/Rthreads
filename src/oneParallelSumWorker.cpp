@@ -33,7 +33,8 @@ double oneParallelSumWorker(Rcpp::NumericVector &input) {
     oneSum total;
 
     // call threaded reduce part
-    oneapi::tbb::parallel_reduce(
+
+    oneapi::tbb::parallel_deterministic_reduce(
         oneapi::tbb::blocked_range<double*>( array, array+num_elements ),
         total 
     );
