@@ -83,7 +83,7 @@ RUN dnf -y groupinstall "Development Tools" \
     && dnf config-manager --set-enabled crb \
     && dnf install -y \
       arrow16-libs \
-      arrow16-glib-libs \
+      # arrow16-glib-libs \
       arrow-devel \
       arrow-glib-devel \
       arrow-dataset-devel \
@@ -110,6 +110,7 @@ RUN dnf -y groupinstall "Development Tools" \
       libssh2 \
       libssh2-devel \
       libtiff-devel \
+      pandoc \
       parquet-devel \
       parquet-glib-devel \
       texinfo \

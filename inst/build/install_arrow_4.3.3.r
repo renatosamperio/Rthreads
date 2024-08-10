@@ -1,14 +1,3 @@
-install_packages <- function(pkgs, ...) {
-  install.packages(pkgs, dependencies = TRUE, ...)
-  
-  # break if any of the packages was not installed
-  not_installed <- setdiff(pkgs, installed.packages()[, 'Package'])
-  if (length(not_installed) > 0) {
-    stop("The following package(s) could not be installed: ", toString(sQuote(not_installed)))
-  }
-  invisible(NULL)
-}
-
 # Install all compression types with "arrow" package.
 Sys.setenv(
   "ARROW_WITH_BROTLI" = TRUE,
